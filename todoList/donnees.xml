@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tests>
+  <Test>
+    <ID>1</ID>
+    <Commentaire>Test numéro 1</Commentaire>
+  </Test>
+  <Test>
+    <ID>2</ID>
+    <Commentaire>coucou Vincent</Commentaire>
+  </Test>
+  <Test>
+    <ID>21</ID>
+    <Commentaire>un nouveau commentaire</Commentaire>
+  </Test>
+  <Test>
+    <ID>22</ID>
+    <Commentaire>un nouveau test</Commentaire>
+  </Test>
+</Tests>    
