@@ -116,6 +116,10 @@
     <Compile Include="Migrations\201807050815305_Init.Designer.cs">
       <DependentUpon>201807050815305_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807051334506_AddTodo.cs" />
+    <Compile Include="Migrations\201807051334506_AddTodo.Designer.cs">
+      <DependentUpon>201807051334506_AddTodo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\requiredAttribute.cs" />
@@ -137,6 +141,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807050815305_Init.resx">
       <DependentUpon>201807050815305_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807051334506_AddTodo.resx">
+      <DependentUpon>201807051334506_AddTodo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
