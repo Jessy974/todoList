@@ -15,6 +15,6 @@ namespace todoList.Data
         }
 
         //ajout d'entités qui se trouvent dans le DbSet
-        //public DbSet<Category> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
