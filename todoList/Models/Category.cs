@@ -14,7 +14,7 @@ namespace todoList.Models
 
         [Required(ErrorMessage ="Le champ nom est obligatoire")]
         [MinLength(5,ErrorMessage ="Nom trop court")]
-        [RegularExpression("^[a-z]$")]
+        [RegularExpression("^[a-z]+$")]
 
         public string Name { get; set; }
 
