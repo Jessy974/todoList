@@ -8,7 +8,7 @@ namespace todoList.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Todoes",
+                "dbo.Todos",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
@@ -27,9 +27,9 @@ namespace todoList.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Todoes", "CategoryID", "dbo.Categories");
-            DropIndex("dbo.Todoes", new[] { "CategoryID" });
-            DropTable("dbo.Todoes");
+            DropForeignKey("dbo.Todos", "CategoryID", "dbo.Categories");
+            DropIndex("dbo.Todos", new[] { "CategoryID" });
+            DropTable("dbo.Todos");
         }
     }
 }
