@@ -13,6 +13,7 @@ using todoList.Models;
 
 namespace todoList.Controllers
 {
+    [RoutePrefix("api/todos")]
     public class TodosController : ApiController
     {
         private TodoListDbContext db = new TodoListDbContext();
@@ -27,10 +28,11 @@ namespace todoList.Controllers
         /// <returns></returns>
         public IQueryable<Todo> GetTodos()
         {
-            return db.Todos.Include(x=>x.Category);
+            return db.Todos.Include(x => x.Category);
         }
 
         // GET: api/Todos/5
+        [Route("id:int")]
         [ResponseType(typeof(Todo))]
         public IHttpActionResult GetTodo(int id)
         {
@@ -43,7 +45,34 @@ namespace todoList.Controllers
             return Ok(todo);
         }
 
+        //GET : api/todos/search
+        [Route("search")]
+        public IQueryable<Todo> GetTodo(string name = "", int? categoryId = null, bool? done = null, DateTime? deadline = null)
+        {
+            var query = db.Todos.Where(x => !x.Deleted);
+
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(x => x.Name.Contains(name));
+               
+
+            if (categoryId != null)
+                query = query.Where(x => x.CategoryID == categoryId);
+
+            if (done != null)
+                query = query.Where(x => x.Done == done);
+
+            if (deadline != null)
+                query = query.Where(x => x.DeadLineDate == deadline);
+
+            return query;
+
+
+
+
+        }
+
         // PUT: api/Todos/5
+        [Route("id:int")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTodo(int id, Todo todo)
         {
@@ -53,6 +82,10 @@ namespace todoList.Controllers
             }
 
             if (id != todo.ID)
+            {
+                return BadRequest();
+            }
+            if (db.Todos.Find(id).Deleted)
             {
                 return BadRequest();
             }
@@ -103,7 +136,12 @@ namespace todoList.Controllers
                 return NotFound();
             }
 
-            db.Todos.Remove(todo);
+            //db.Todos.Remove(todo);
+            todo.Deleted = true;
+            todo.DeletedAt = DateTime.Now;
+            //enregistrement de la suppression en base
+            db.Entry(todo).State = System.Data.Entity.EntityState.Modified;
+
             db.SaveChanges();
 
             return Ok(todo);

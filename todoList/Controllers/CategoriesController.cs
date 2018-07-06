@@ -10,11 +10,15 @@ using todoList.Models;
 
 namespace todoList.Controllers
 {
+    [RoutePrefix("api/categories")]
     public class CategoriesController : ApiController
     {
         // déclaration et instanciation : ouverture de la connexion à la base de données
         private TodoListDbContext db = new TodoListDbContext();
 
+
+
+        
         [ResponseType(typeof(Category))]
         public IHttpActionResult PostCategory(Category category)
         {
@@ -35,9 +39,9 @@ namespace todoList.Controllers
 
         }
         //méthode GET
-        /*
+        
         [ResponseType(typeof(Category))]
-        public List<Category> GetCategories()
+        /*public List<Category> GetCategories()
         {
             return db.Categories.ToList();
 
@@ -60,6 +64,7 @@ namespace todoList.Controllers
             return Ok(idcat);
         }*/
         //2ème méthode
+        [Route("{id:int}")]
         [ResponseType(typeof(Category))]
         public IHttpActionResult GetCategories(int id)
         {
@@ -73,9 +78,17 @@ namespace todoList.Controllers
 
             return Ok(category);
         }
+        //recherche par nom
+        [Route("{name}")]
+        [ResponseType(typeof(Category))]
+        public IQueryable<Category> GetCategories(string name)
+        {
+            return db.Categories.Where(x => !x.Deleted && x.Name.Contains(name));
+        }
+
 
         //Méthode PUT
-
+        [Route("{id:int}")]
         [ResponseType(typeof(Category))]
         public IHttpActionResult PutCategories(int id, Category category)
         {
@@ -89,6 +102,10 @@ namespace todoList.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (db.Categories.Find(id).Deleted)
+            {
+                return BadRequest();
+            }
             db.Entry(category).State = System.Data.Entity.EntityState.Modified;
 
 
@@ -109,11 +126,10 @@ namespace todoList.Controllers
             {
                 return NotFound();
             }*/
-
-           
-           
-
+      
         }
+
+        [Route("{id:int}")]
         [ResponseType(typeof(Category))]
         public IHttpActionResult DeleteCategories(int id)
         {
@@ -122,7 +138,12 @@ namespace todoList.Controllers
             {
                 return NotFound();
             }
-            db.Categories.Remove(category);
+
+            //nouvelle méthode de suppression (flag) par rapport au basemodel
+            category.Deleted = true;
+            category.DeletedAt = DateTime.Now;
+            //enregistrement de la suppression en base
+            db.Entry(category).State = System.Data.Entity.EntityState.Modified;
 
             db.SaveChanges();
             return Ok(category);

@@ -102,6 +102,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="HTML\categories.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,10 @@
     <Compile Include="Migrations\201807060820170_UpdateDeleteAllBaseModel.cs" />
     <Compile Include="Migrations\201807060820170_UpdateDeleteAllBaseModel.Designer.cs">
       <DependentUpon>201807060820170_UpdateDeleteAllBaseModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807060947165_UpdateCreatedAtBaseModel.cs" />
+    <Compile Include="Migrations\201807060947165_UpdateCreatedAtBaseModel.Designer.cs">
+      <DependentUpon>201807060947165_UpdateCreatedAtBaseModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -161,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807060820170_UpdateDeleteAllBaseModel.resx">
       <DependentUpon>201807060820170_UpdateDeleteAllBaseModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807060947165_UpdateCreatedAtBaseModel.resx">
+      <DependentUpon>201807060947165_UpdateCreatedAtBaseModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
