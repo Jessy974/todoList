@@ -123,6 +123,7 @@
       <DependentUpon>201807051334506_AddTodo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\requiredAttribute.cs" />
     <Compile Include="Models\Todo.cs" />

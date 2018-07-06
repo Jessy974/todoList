@@ -6,9 +6,9 @@ using System.Web;
 
 namespace todoList.Models
 {
-    public class Category
+    public class Category : BaseModel
     {
-        public int ID { get; set; }
+        //public int ID { get; set; }
 
 
 
