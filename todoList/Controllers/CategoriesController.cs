@@ -45,7 +45,7 @@ namespace todoList.Controllers
         //2ème méthode 
         public IQueryable<Category> GetCategories()
         {
-            return db.Categories;
+            return db.Categories.Where(x =>!x.Deleted);
         }
         //Méthode GET par ID
         /*

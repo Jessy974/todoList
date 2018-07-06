@@ -16,8 +16,8 @@ namespace todoList.Models
         public DateTime CreatedAt { get; set; }
 
         public bool Deleted { get; set; }
-
-        public DateTime DeletedAt { get; set; }
+        //pour rendre une valeur nullable en base de donnée sur le type primitif
+        public DateTime? DeletedAt { get; set; }
 
     }
 }
